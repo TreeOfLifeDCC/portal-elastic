@@ -1,4 +1,3 @@
-CURL -X PUT "http://45.86.170.227:31664/new_index" -H "Content-Type: application/json" -d '
 {
 	"settings": {
 		"max_result_window": 1000000,
@@ -127,4 +126,4 @@ CURL -X PUT "http://45.86.170.227:31664/new_index" -H "Content-Type: application
 			}
 		}
 	}
-}'
+}
