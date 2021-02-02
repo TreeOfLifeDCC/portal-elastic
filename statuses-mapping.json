@@ -1,0 +1,56 @@
+{
+	"settings": {
+		"max_result_window": 1000000,
+		"analysis": {
+			"normalizer": {
+				"lower_case": {
+					"type": "custom",
+					"filter": ["lowercase"]
+				}
+			}
+		}
+	},
+	"mappings": {
+		"properties": {
+			"annotation": {
+                "type": "keyword",
+                "normalizer": "lower_case"
+			},
+			"annotation_complete": {
+				"type": "keyword",
+				"normalizer": "lower_case"
+			},
+			"assemblies": {
+				"type": "keyword",
+				"normalizer": "lower_case"
+			},
+			"biosamples": {
+				"type": "keyword",
+				"normalizer": "lower_case"
+			},
+			"biosamples_date": {
+				"type": "date"
+			},
+			"commonName": {
+				"type": "keyword",
+				"normalizer": "lower_case"
+			},
+			"ena_date": {
+				"type": "date"
+			},
+			"mapped_reads": {
+				"type": "keyword",
+				"normalizer": "lower_case"
+			},
+			"organism": {
+				"type": "keyword",
+				"normalizer": "lower_case"
+			},
+			"raw_data": {
+				"type": "keyword",
+				"normalizer": "lower_case"
+			}
+		}
+	}
+
+}
