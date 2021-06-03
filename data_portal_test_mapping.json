@@ -1,0 +1,877 @@
+CURL - X PUT "http://45.86.170.227:31664/data_portal_new_test" - H "Content-Type: application/json" - d '{
+"settings": {
+    "max_result_window": 1000000,
+    "analysis": {
+        "normalizer": {
+            "lower_case_normalizer": {
+                "type": "custom",
+                "filter": ["lowercase"]
+            }
+        }
+    }
+},
+"mappings": {
+    "properties": {
+        "commonName": {
+            "type": "keyword",
+            "fields": {
+                "normalize": {
+                    "type": "keyword",
+                    "normalizer": "lower_case_normalizer"
+                },
+                "keyword": {
+                    "type": "keyword"
+                }
+            }
+        },
+        "organism": {
+            "type": "keyword",
+            "fields": {
+                "normalize": {
+                    "type": "keyword",
+                    "normalizer": "lower_case_normalizer"
+                },
+                "keyword": {
+                    "type": "keyword"
+                }
+            }
+        },
+        "records": {
+            "type": "nested",
+            "properties": {
+                "accession": {
+                    "type": "keyword"
+                },
+                "commonName": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "organism": {
+                    "type": "nested",
+                    "properties": {
+                        "ontologyTerm": {
+                            "type": "keyword"
+                        },
+                        "text": {
+                            "type": "keyword",
+                            "fields": {
+                                "normalize": {
+                                    "type": "keyword",
+                                    "normalizer": "lower_case_normalizer"
+                                },
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        }
+                    }
+                },
+                "organismPart": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "sex": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "trackingSystem": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                }
+            }
+        },
+        "trackingSystem": {
+            "type": "keyword",
+            "fields": {
+                "normalize": {
+                    "type": "keyword",
+                    "normalizer": "lower_case_normalizer"
+                },
+                "keyword": {
+                    "type": "keyword"
+                }
+            }
+        },
+        "assemblies": {
+            "type": "nested",
+            "properties": {
+                "accession": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "assembly_name": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "description": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "version": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                }
+            }
+        },
+        "experiment": {
+            "type": "nested",
+            "properties": {
+                "experiment_accession": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "fastq_ftp": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "first_public": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "instrument_model": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "instrument_platform": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "library_layout": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "library_selection": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "library_source": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "library_strategy": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "run_accession": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "scientific_name": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "sra_ftp": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "study_accession": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "submitted_ftp": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "tax_id": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                }
+            }
+        },
+        "taxonomies": {
+            "type": "nested",
+            "properties": {
+                "class": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "cohort": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "family": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "forma": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "genus": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "infraclass": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "infraorder": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "kingdom": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "order": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "parvorder": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "phylum": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "section": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "series": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "commonName": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "species": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "species_group": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "species_subgroup": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subclass": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subcohort": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subfamily": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subgenus": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subkingdom": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "suborder": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subphylum": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subsection": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subspecies": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "subtribe": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "superclass": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "superfamily": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "superkingdom": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "superorder": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "superphylum": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "tribe": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "varietas": {
+                    "type": "keyword",
+                    "fields": {
+                        "normalize": {
+                            "type": "keyword",
+                            "normalizer": "lower_case_normalizer"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        }
+                    }
+                }
+            }
+        },
+        "annotation": {
+            "properties": {
+                "accession": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "annotation": {
+                    "properties": {
+                        "GFF3": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        },
+                        "GTF": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        }
+                    }
+                },
+                "other_data": {
+                    "properties": {
+                        "FTP dumps": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        }
+                    }
+                },
+                "proteins": {
+                    "properties": {
+                        "FASTA": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        }
+                    }
+                },
+                "softmasked_genome": {
+                    "properties": {
+                        "FASTA": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        }
+                    }
+                },
+                "transcripts": {
+                    "properties": {
+                        "FASTA": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        }
+                    }
+                },
+                "view_in_browser": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+}
+'
