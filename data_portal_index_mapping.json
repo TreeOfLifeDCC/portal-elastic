@@ -12,6 +12,18 @@
     },
     "mappings": {
         "properties": {
+            "tax_id": {
+                "type": "keyword",
+                "fields": {
+                    "normalize": {
+                        "type": "keyword",
+                        "normalizer": "lower_case_normalizer"
+                    },
+                    "keyword": {
+                        "type": "keyword"
+                    }
+                }
+            },
             "commonName": {
                 "type": "keyword",
                 "fields": {
