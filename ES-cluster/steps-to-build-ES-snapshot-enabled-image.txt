@@ -1,0 +1,29 @@
+1. Create Elasticsearch docker image with repository-s3 plugin and push it to EBI container registry
+   docker build -t elasticsearch-s3-repo-7.13.2
+   docker tag   <your-image> dockerhub.ebi.ac.uk/[your gitlab project]/[your gitlab repo]:<image>
+   docker push dockerhub.ebi.ac.uk/[your gitlab project]/[your gitlab repo]:<image>
+2. Create K8s secret for EBI container registry
+kubectl create secret docker-registry ebi-docker-registry --docker-server=dockerhub.ebi.ac.uk --docker-username=<username> --docker-password=<password> -n elasticsearch-test
+3. Deploy K8s elasticsearch yml.
+4. Create a ES repository
+   curl -X PUT "<ES-endpoint>/_snapshot/es-backup?pretty" -H 'Content-Type: application/json' -d '{
+      "type": "s3",
+         "settings": {
+            "bucket": "<s3-bucket>"
+         }
+   }'
+5. Define SLM policy for taking automated snapshots everyday
+PUT /_slm/policy/nightly-snapshots
+   curl -X PUT "<ES-endpoint>/_slm/policy/nightly-snapshots?pretty" -H 'Content-Type: application/json' -d '{
+      "schedule": "0 30 1 * * ?", 
+      "name": "<es-snapshot-{now/d}>", 
+      "repository": "es-backup", 
+      "config": { 
+         "indices": ["*"] 
+      },
+      "retention": { 
+         "expire_after": "30d", 
+         "min_count": 5, 
+         "max_count": 50 
+      }
+   }
