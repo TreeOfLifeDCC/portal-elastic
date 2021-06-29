@@ -1,4 +1,4 @@
-CURL - X PUT "http://45.86.170.227:31664/statuses_index" - H "Content-Type: application/json" - d ' {
+{
     "settings": {
         "max_result_window": 1000000,
         "analysis": {
@@ -161,4 +161,3 @@ CURL - X PUT "http://45.86.170.227:31664/statuses_index" - H "Content-Type: appl
     }
 
 }
-'
