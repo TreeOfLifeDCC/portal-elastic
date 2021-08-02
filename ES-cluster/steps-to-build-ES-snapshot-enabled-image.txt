@@ -6,7 +6,7 @@
 kubectl create secret docker-registry ebi-docker-registry --docker-server=dockerhub.ebi.ac.uk --docker-username=ibrahim --docker-password=zHLn-zs4TGMWY21rRyYM -n elasticsearch
 3. Deploy K8s elasticsearch yml.
 4. Create a ES repository
-   curl -X PUT "http://45.86.170.227:31664/_snapshot/es-backup?pretty" -H 'Content-Type: application/json' -d '{
+   curl -X PUT "http://45.88.81.49/elasticsearch/_snapshot/asg-backup?pretty" -H 'Content-Type: application/json' -d '{
       "type": "s3",
          "settings": {
             "bucket": "treeoflifeportal-36656966",
@@ -14,10 +14,10 @@ kubectl create secret docker-registry ebi-docker-registry --docker-server=docker
          }
    }'
 5. Define SLM policy for taking automated snapshots everyday
-   curl -X PUT "http://45.86.170.227:31664/_slm/policy/nightly-snapshots?pretty" -H 'Content-Type: application/json' -d '{
+   curl -X PUT "http://45.88.81.49/elasticsearch/_slm/policy/nightly-snapshots?pretty" -H 'Content-Type: application/json' -d '{
       "schedule": "0 30 1 * * ?", 
-      "name": "<es-snapshot-{now/d}>", 
-      "repository": "es-backup", 
+      "name": "<asg-snapshot-{now/d}>", 
+      "repository": "asg-backup", 
       "config": { 
          "indices": ["*"] 
       },
@@ -37,3 +37,13 @@ curl -X POST "http://45.86.170.227:31664/_snapshot/es-backup/es-snapshot-2021.06
   "rename_pattern": "(\\w+)",
   "rename_replacement": "$1"
 }'
+
+7. Get snapshot list
+curl -X GET "http://45.88.81.49/elasticsearch/_cat/snapshots/asg-backup"
+
+
+8. Delete snapshot
+curl -X DELETE "http://45.88.81.49/elasticsearch/_snapshot/asg-backup/<snapshot>"
+
+9. Delete repository
+curl -X DELETE "http://45.88.81.49/elasticsearch/_snapshot/asg-backup"
