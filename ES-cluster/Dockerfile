@@ -4,5 +4,5 @@ RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch repository
 
 COPY --chown=elasticsearch:elasticsearch elasticsearch.yml /usr/share/elasticsearch/config/
 
-RUN echo "secret-key" | bin/elasticsearch-keystore add --stdin --force s3.client.default.secret_key
-RUN echo "access-key" | bin/elasticsearch-keystore add --stdin --force s3.client.default.access_key
+RUN echo "<S3-secret-key>" | bin/elasticsearch-keystore add --stdin --force s3.client.default.secret_key
+RUN echo "<S3-access-key>" | bin/elasticsearch-keystore add --stdin --force s3.client.default.access_key

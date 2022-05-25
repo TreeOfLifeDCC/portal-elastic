@@ -3,21 +3,21 @@
    docker tag   <your-image> dockerhub.ebi.ac.uk/[your gitlab project]/[your gitlab repo]:<image>
    docker push dockerhub.ebi.ac.uk/[your gitlab project]/[your gitlab repo]:<image>
 2. Create K8s secret for EBI container registry
-kubectl create secret docker-registry ebi-docker-registry --docker-server=dockerhub.ebi.ac.uk --docker-username=ibrahim --docker-password=zHLn-zs4TGMWY21rRyYM -n elasticsearch
+kubectl create secret docker-registry ebi-docker-registry --docker-server=dockerhub.ebi.ac.uk --docker-username=<gitlab+deploy-token> --docker-password=<deploy-token> -n elasticsearch
 3. Deploy K8s elasticsearch yml.
 4. Create a ES repository
-   curl -X PUT "http://45.88.81.49/elasticsearch/_snapshot/asg-backup?pretty" -H 'Content-Type: application/json' -d '{
+   curl -X PUT "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup?pretty" -H 'Content-Type: application/json' -d '{
       "type": "s3",
          "settings": {
-            "bucket": "treeoflifeportal-36656966",
+            "bucket": "dtol-backup",
             "path_style_access": true
          }
    }'
 5. Define SLM policy for taking automated snapshots everyday
-   curl -X PUT "http://45.88.81.49/elasticsearch/_slm/policy/nightly-snapshots?pretty" -H 'Content-Type: application/json' -d '{
+   curl -X PUT "http://45.88.81.118/elasticsearch/_slm/policy/nightly-snapshots?pretty" -H 'Content-Type: application/json' -d '{
       "schedule": "0 30 1 * * ?", 
-      "name": "<asg-snapshot-{now/d}>", 
-      "repository": "asg-backup", 
+      "name": "<dtol-snapshot-{now/d}>", 
+      "repository": "dtol-backup", 
       "config": { 
          "indices": ["*"] 
       },
@@ -29,21 +29,19 @@ kubectl create secret docker-registry ebi-docker-registry --docker-server=docker
    }'
 
 6. Restore Snapshot on a new cluster - Perform step 4 on new cluster and then restore specific snapshot
-curl -X POST "http://45.86.170.227:31664/_snapshot/es-backup/es-snapshot-2021.06.29-zqnw3nmztcs-hpzcdryqww/_restore?pretty" -H 'Content-Type: application/json' -d'
+curl -X POST "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup/es-snapshot-2021.06.29-zqnw3nmztcs-hpzcdryqww/_restore?pretty" -H 'Content-Type: application/json' -d'
 {
-  "indices": "data_portal_index,statuses_index,organisms_test,specimens_test",
   "ignore_unavailable": true,
   "include_global_state": true,
-  "rename_pattern": "(\\w+)",
-  "rename_replacement": "$1"
+  "include_aliases": false
 }'
 
 7. Get snapshot list
-curl -X GET "http://45.88.81.49/elasticsearch/_cat/snapshots/asg-backup"
+curl -X GET "http://45.86.170.227/elasticsearch/_cat/snapshots/es-backup"
 
 
 8. Delete snapshot
-curl -X DELETE "http://45.88.81.49/elasticsearch/_snapshot/asg-backup/<snapshot>"
+curl -X DELETE "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup/<snapshot>"
 
 9. Delete repository
-curl -X DELETE "http://45.88.81.49/elasticsearch/_snapshot/asg-backup"
+curl -X DELETE "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup"

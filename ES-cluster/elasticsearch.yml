@@ -1,5 +1,5 @@
 cluster.name: "docker-cluster"
 network.host: 0.0.0.0
 
-s3.client.default.endpoint: s3.embassy.ebi.ac.uk
+s3.client.default.endpoint: uk1s3.embassy.ebi.ac.uk
 s3.client.default.region: us-east-1
