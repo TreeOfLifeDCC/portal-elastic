@@ -6,7 +6,7 @@
 kubectl create secret docker-registry ebi-docker-registry --docker-server=dockerhub.ebi.ac.uk --docker-username=<gitlab+deploy-token> --docker-password=<deploy-token> -n elasticsearch
 3. Deploy K8s elasticsearch yml.
 4. Create a ES repository
-   curl -X PUT "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup?pretty" -H 'Content-Type: application/json' -d '{
+   curl -X PUT "<URI>/elasticsearch/_snapshot/dtol-backup?pretty" -H 'Content-Type: application/json' -d '{
       "type": "s3",
          "settings": {
             "bucket": "dtol-backup",
@@ -14,7 +14,7 @@ kubectl create secret docker-registry ebi-docker-registry --docker-server=docker
          }
    }'
 5. Define SLM policy for taking automated snapshots everyday
-   curl -X PUT "http://45.88.81.118/elasticsearch/_slm/policy/nightly-snapshots?pretty" -H 'Content-Type: application/json' -d '{
+   curl -X PUT "<URI>/elasticsearch/_slm/policy/nightly-snapshots?pretty" -H 'Content-Type: application/json' -d '{
       "schedule": "0 30 1 * * ?", 
       "name": "<dtol-snapshot-{now/d}>", 
       "repository": "dtol-backup", 
@@ -29,7 +29,7 @@ kubectl create secret docker-registry ebi-docker-registry --docker-server=docker
    }'
 
 6. Restore Snapshot on a new cluster - Perform step 4 on new cluster and then restore specific snapshot
-curl -X POST "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup/es-snapshot-2021.06.29-zqnw3nmztcs-hpzcdryqww/_restore?pretty" -H 'Content-Type: application/json' -d'
+curl -X POST "<URI>/elasticsearch/_snapshot/dtol-backup/es-snapshot-2021.06.29-zqnw3nmztcs-hpzcdryqww/_restore?pretty" -H 'Content-Type: application/json' -d'
 {
   "ignore_unavailable": true,
   "include_global_state": true,
@@ -37,11 +37,11 @@ curl -X POST "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup/es-snapsho
 }'
 
 7. Get snapshot list
-curl -X GET "http://45.86.170.227/elasticsearch/_cat/snapshots/es-backup"
+curl -X GET "<URI>/elasticsearch/_cat/snapshots/es-backup"
 
 
 8. Delete snapshot
-curl -X DELETE "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup/<snapshot>"
+curl -X DELETE "<URI>/elasticsearch/_snapshot/dtol-backup/<snapshot>"
 
 9. Delete repository
-curl -X DELETE "http://45.88.81.118/elasticsearch/_snapshot/dtol-backup"
+curl -X DELETE "<URI>/elasticsearch/_snapshot/dtol-backup"
