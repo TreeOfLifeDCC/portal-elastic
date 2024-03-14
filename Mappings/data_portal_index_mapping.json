@@ -1,862 +1,3579 @@
 {
-    "settings": {
-        "max_result_window": 1000000,
-        "analysis": {
-            "normalizer": {
-                "lower_case_normalizer": {
-                    "type": "custom",
-                    "filter": ["lowercase"]
-                }
-            }
+  "settings": {
+    "max_result_window": 1000000,
+    "analysis": {
+      "normalizer": {
+        "lower_case_normalizer": {
+          "type": "custom",
+          "filter": [
+            "lowercase"
+          ]
         }
-    },
-    "mappings": {
-        "properties": {
-            "tax_id": {
-                "type": "keyword",
-                "fields": {
-                    "normalize": {
-                        "type": "keyword",
-                        "normalizer": "lower_case_normalizer"
-                    },
-                    "keyword": {
-                        "type": "keyword"
-                    }
-                }
-            },
-            "commonName": {
-                "type": "keyword",
-                "fields": {
-                    "normalize": {
-                        "type": "keyword",
-                        "normalizer": "lower_case_normalizer"
-                    },
-                    "keyword": {
-                        "type": "keyword"
-                    }
-                }
-            },
-            "organism": {
-                "type": "keyword",
-                "fields": {
-                    "normalize": {
-                        "type": "keyword",
-                        "normalizer": "lower_case_normalizer"
-                    },
-                    "keyword": {
-                        "type": "keyword"
-                    }
-                }
-            },
-            "records": {
-                "type": "nested",
-                "properties": {
-                    "accession": {
-                        "type": "keyword"
-                    },
-                    "commonName": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "organism": {
-                        "type": "nested",
-                        "properties": {
-                            "ontologyTerm": {
-                                "type": "keyword"
-                            },
-                            "text": {
-                                "type": "keyword",
-                                "fields": {
-                                    "normalize": {
-                                        "type": "keyword",
-                                        "normalizer": "lower_case_normalizer"
-                                    },
-                                    "keyword": {
-                                        "type": "keyword"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "organismPart": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "sex": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "trackingSystem": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    }
-                }
-            },
-            "trackingSystem": {
-                "type": "nested",
-                "properties": {
-                    "rank": {
-                        "type": "keyword"
-                    },
-                    "status": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    }
-                }
-            },
-            "assemblies": {
-                "type": "nested",
-                "properties": {
-                    "accession": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "assembly_name": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "description": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "version": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    }
-                }
-            },
-            "experiment": {
-                "type": "nested",
-                "properties": {
-                    "experiment_accession": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "fastq_ftp": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "first_public": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "instrument_model": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "instrument_platform": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "library_layout": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "library_selection": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "library_source": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "library_strategy": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "run_accession": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "scientific_name": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "sra_ftp": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "study_accession": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "submitted_ftp": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "tax_id": {
-                        "type": "keyword",
-                        "fields": {
-                            "normalize": {
-                                "type": "keyword",
-                                "normalizer": "lower_case_normalizer"
-                            },
-                            "keyword": {
-                                "type": "keyword"
-                            }
-                        }
-                    }
-                }
-            },
-            "taxonomies": {
-                "type": "nested",
-                "properties": {
-                    "class": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "cohort": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "family": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "forma": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "genus": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "infraclass": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "infraorder": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "kingdom": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "order": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "parvorder": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "phylum": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "section": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "series": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "commonName": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "species": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "species_group": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "species_subgroup": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subclass": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subcohort": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subfamily": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subgenus": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subkingdom": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "suborder": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subphylum": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subsection": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subspecies": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "subtribe": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "superclass": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "superfamily": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "superkingdom": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "superorder": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "superphylum": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "tribe": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    },
-                    "varietas": {
-                        "type": "nested",
-                        "properties": {
-                            "scientificName": {
-                                "type": "keyword"
-                            },
-                            "commonName": {
-                                "type": "keyword"
-                            }
-                        }
-                    }
-                }
-            },
-            "annotation": {
-                "properties": {
-                    "accession": {
-                        "type": "text",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
-                    },
-                    "annotation": {
-                        "properties": {
-                            "GFF3": {
-                                "type": "text",
-                                "fields": {
-                                    "keyword": {
-                                        "type": "keyword",
-                                        "ignore_above": 256
-                                    }
-                                }
-                            },
-                            "GTF": {
-                                "type": "text",
-                                "fields": {
-                                    "keyword": {
-                                        "type": "keyword",
-                                        "ignore_above": 256
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "other_data": {
-                        "properties": {
-                            "FTP dumps": {
-                                "type": "text",
-                                "fields": {
-                                    "keyword": {
-                                        "type": "keyword",
-                                        "ignore_above": 256
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "proteins": {
-                        "properties": {
-                            "FASTA": {
-                                "type": "text",
-                                "fields": {
-                                    "keyword": {
-                                        "type": "keyword",
-                                        "ignore_above": 256
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "softmasked_genome": {
-                        "properties": {
-                            "FASTA": {
-                                "type": "text",
-                                "fields": {
-                                    "keyword": {
-                                        "type": "keyword",
-                                        "ignore_above": 256
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "transcripts": {
-                        "properties": {
-                            "FASTA": {
-                                "type": "text",
-                                "fields": {
-                                    "keyword": {
-                                        "type": "keyword",
-                                        "ignore_above": 256
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "view_in_browser": {
-                        "type": "text",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
-                    }
-                }
-            }
+      },
+      "analyzer": {
+        "autocomplete": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "autocomplete_filter"
+          ]
         }
+      },
+      "filter": {
+        "autocomplete_filter": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 20,
+          "token_chars": [
+            "letter",
+            "digit",
+            "whitespace"
+          ]
+        }
+      }
     }
+  },
+  "mappings": {
+    "properties": {
+      "annotation": {
+        "properties": {
+          "accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "annotation": {
+            "properties": {
+              "GFF3": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "GTF": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "other_data": {
+            "properties": {
+              "FTP dumps": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "ftp_dumps": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "proteins": {
+            "properties": {
+              "FASTA": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "repeat_library": {
+            "properties": {
+              "FASTA": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "softmasked_genome": {
+            "properties": {
+              "FASTA": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "species": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "transcripts": {
+            "properties": {
+              "FASTA": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "view_in_browser": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "annotation_complete": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "autocomp": {
+            "type": "text",
+            "analyzer": "autocomplete",
+            "search_analyzer": "standard"
+          }
+        }
+      },
+      "annotation_status": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "autocomp": {
+            "type": "text",
+            "analyzer": "autocomplete",
+            "search_analyzer": "standard"
+          }
+        }
+      },
+      "assemblies": {
+        "type": "nested",
+        "properties": {
+          "accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "assembly_name": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "base_count": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "broker_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "center_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "cram_index_aspera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "cram_index_ftp": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "cram_index_galaxy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "description": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "experiment_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "experiment_alias": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "experiment_title": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_aspera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_bytes": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_ftp": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_galaxy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_md5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "first_created": {
+            "type": "date"
+          },
+          "first_public": {
+            "type": "date"
+          },
+          "instrument_model": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "instrument_platform": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "last_updated": {
+            "type": "date"
+          },
+          "library_layout": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "library_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "library_selection": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "library_source": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "library_strategy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "nominal_length": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "nominal_sdev": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "read_count": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "run_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "run_alias": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_alias": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_title": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "scientific_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "secondary_sample_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "secondary_study_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_aspera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_bytes": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_ftp": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_galaxy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_md5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "study_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "study_alias": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "study_title": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submission_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_aspera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_bytes": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_format": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_ftp": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_galaxy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_md5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "tax_id": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "version": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          }
+        }
+      },
+      "assemblies_status": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "autocomp": {
+            "type": "text",
+            "analyzer": "autocomplete",
+            "search_analyzer": "standard"
+          }
+        }
+      },
+      "biosamples": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "autocomp": {
+            "type": "text",
+            "analyzer": "autocomplete",
+            "search_analyzer": "standard"
+          }
+        }
+      },
+      "commonName": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          },
+          "autocomp": {
+            "type": "text",
+            "analyzer": "autocomplete",
+            "search_analyzer": "standard"
+          },
+          "normalize": {
+            "type": "keyword",
+            "normalizer": "lower_case_normalizer"
+          }
+        }
+      },
+      "commonNameSource": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          },
+          "normalize": {
+            "type": "keyword",
+            "normalizer": "lower_case_normalizer"
+          }
+        }
+      },
+      "currentStatus": {
+        "type": "keyword"
+      },
+      "experiment": {
+        "type": "nested",
+        "properties": {
+          "base_count": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "broker_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "center_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "cram_index_aspera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "cram_index_ftp": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "cram_index_galaxy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "experiment_accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "experiment_alias": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "experiment_title": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_aspera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_bytes": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_ftp": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "fastq_galaxy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "fastq_md5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "first_created": {
+            "type": "date"
+          },
+          "first_public": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "instrument_model": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "instrument_platform": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "last_updated": {
+            "type": "date"
+          },
+          "library_construction_protocol": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "library_constuction_protocol": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "library_layout": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "library_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "library_selection": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "library_source": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "library_strategy": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "nominal_length": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "nominal_sdev": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "read_count": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "run_accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "run_alias": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_alias": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_title": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "scientific_name": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "secondary_sample_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "secondary_study_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_aspera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_bytes": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_ftp": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "sra_galaxy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sra_md5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "study_accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "study_alias": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "study_title": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submission_accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_aspera": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_bytes": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_format": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_ftp": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "submitted_galaxy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_md5": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "tax_id": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          }
+        }
+      },
+      "genome_notes": {
+        "type": "nested",
+        "properties": {
+          "abstract": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "caption": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "citeURL": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "description": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "figureURI": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "id": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "title": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "url": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          }
+        }
+      },
+      "goat_info": {
+        "type": "nested",
+        "properties": {
+          "attributes": {
+            "type": "nested",
+            "properties": {
+              "aggregation_method": {
+                "type": "keyword"
+              },
+              "aggregation_source": {
+                "type": "keyword"
+              },
+              "count": {
+                "type": "keyword"
+              },
+              "name": {
+                "type": "keyword"
+              },
+              "value": {
+                "type": "keyword"
+              }
+            }
+          },
+          "busco_completeness": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "genome_size": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "url": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          }
+        }
+      },
+      "images": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "mapped_reads": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "autocomp": {
+            "type": "text",
+            "analyzer": "autocomplete",
+            "search_analyzer": "standard"
+          }
+        }
+      },
+      "nbnatlas": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "orgGeoList": {
+        "properties": {
+          "accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "commonName": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "lat": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "lng": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "locality": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "organism": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "organismPart": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sex": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "organism": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          },
+          "text": {
+            "type": "text"
+          },
+          "autocomp": {
+            "type": "text",
+            "analyzer": "autocomplete",
+            "search_analyzer": "standard"
+          },
+          "normalize": {
+            "type": "keyword",
+            "normalizer": "lower_case_normalizer"
+          }
+        }
+      },
+      "raw_data": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "autocomp": {
+            "type": "text",
+            "analyzer": "autocomplete",
+            "search_analyzer": "standard"
+          }
+        }
+      },
+      "records": {
+        "type": "nested",
+        "properties": {
+          "accession": {
+            "type": "keyword"
+          },
+          "commonName": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "organism": {
+            "type": "nested",
+            "properties": {
+              "ontologyTerm": {
+                "type": "keyword"
+              },
+              "text": {
+                "type": "keyword",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword"
+                  },
+                  "normalize": {
+                    "type": "keyword",
+                    "normalizer": "lower_case_normalizer"
+                  }
+                }
+              }
+            }
+          },
+          "organismPart": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "sex": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "trackingSystem": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          }
+        }
+      },
+      "related_annotation": {
+        "type": "nested",
+        "properties": {
+          "accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "altitude": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "analysis_accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "analysis_alias": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "analysis_title": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "analysis_type": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "assembly_quality": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "assembly_software": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "assembly_type": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "binning_software": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "bio_material": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "broker_name": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "cell_line": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "cell_type": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "center_name": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "checklist": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "collected_by": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "collection_date": {
+            "type": "date"
+          },
+          "collection_date_submitted": {
+            "type": "date"
+          },
+          "completeness_score": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "contamination_score": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "country": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "cultivar": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "culture_collection": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "depth": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "description": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "dev_stage": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ecotype": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "elevation": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "environment_biome": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "environment_feature": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "environment_material": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "environmental_package": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "environmental_sample": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "experimental_factor": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "first_created": {
+            "type": "date"
+          },
+          "first_public": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "generated_aspera": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "generated_bytes": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "generated_ftp": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "generated_galaxy": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "generated_md5": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "germline": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host_body_site": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host_genotype": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host_gravidity": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host_growth_conditions": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host_phenotype": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host_sex": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host_status": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "host_tax_id": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "identified_by": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "investigation_type": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "isolate": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "isolation_source": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "last_updated": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "lat": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "location": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "lon": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "mating_type": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ph": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "pipeline_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "pipeline_version": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "project_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "protocol_label": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "run_ref": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "salinity": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "sample_alias": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "sample_capture_status": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_collection": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_description": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_material": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sample_title": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "sampling_campaign": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sampling_platform": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sampling_site": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "scientific_name": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "secondary_sample_accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "secondary_study_accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "sequencing_method": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "serotype": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "serovar": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sex": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "specimen_voucher": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "strain": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "study_accession": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "study_alias": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "study_title": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "sub_species": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sub_strain": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submission_tool": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_aspera": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "submitted_bytes": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "submitted_format": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_ftp": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "submitted_galaxy": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "submitted_host_sex": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "submitted_md5": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "submitted_sex": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "target_gene": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "tax_id": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "taxonomic_classification": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "taxonomic_identity_marker": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "temperature": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "tissue_lib": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "tissue_type": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "variety": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "sample_received": {
+        "type": "boolean"
+      },
+      "show_tolqc": {
+        "type": "boolean"
+      },
+      "specGeoList": {
+        "properties": {
+          "accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "commonName": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "lat": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "lng": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "locality": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "organism": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "organismPart": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sex": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "string": {
+        "type": "boolean"
+      },
+      "symbionts_assemblies": {
+        "properties": {
+          "accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "assembly_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "description": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "version": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "symbionts_records": {
+        "properties": {
+          "accession": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "organism": {
+            "properties": {
+              "ontologyTerm": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "text": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  },
+                  "autocomp": {
+                    "type": "text",
+                    "analyzer": "autocomplete",
+                    "search_analyzer": "standard"
+                  }
+                }
+              }
+            }
+          },
+          "organismPart": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sex": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "trackingSystem": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "symbionts_assemblies_status": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "symbionts_biosamples_status": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "symbionts_raw_data_status": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "tax_id": {
+        "type": "keyword",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          },
+          "normalize": {
+            "type": "keyword",
+            "normalizer": "lower_case_normalizer"
+          }
+        }
+      },
+      "taxonomies": {
+        "type": "nested",
+        "properties": {
+          "class": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "cohort": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "commonName": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              }
+            }
+          },
+          "family": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "forma": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              }
+            }
+          },
+          "genus": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "infraclass": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "infraorder": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "kingdom": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "order": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "parvorder": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "phylum": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "section": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              }
+            }
+          },
+          "series": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              }
+            }
+          },
+          "species": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "species_group": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "species_subgroup": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "subclass": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "subcohort": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "subfamily": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "subgenus": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "subkingdom": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "suborder": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "subphylum": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "subsection": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              }
+            }
+          },
+          "subspecies": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              }
+            }
+          },
+          "subtribe": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "superclass": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "superfamily": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "superkingdom": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "superorder": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "superphylum": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              }
+            }
+          },
+          "tribe": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              },
+              "tax_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "varietas": {
+            "type": "nested",
+            "properties": {
+              "commonName": {
+                "type": "keyword"
+              },
+              "scientificName": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "tolid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "trackingSystem": {
+        "type": "nested",
+        "properties": {
+          "name": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          },
+          "rank": {
+            "type": "keyword"
+          },
+          "status": {
+            "type": "keyword",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              },
+              "normalize": {
+                "type": "keyword",
+                "normalizer": "lower_case_normalizer"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
